@@ -5,9 +5,28 @@
   </Configs>
   <NewExtensions/>
   <sounds name="sound"/>
-  <sprites name="sprites"/>
-  <backgrounds name="background"/>
+  <sprites name="sprites">
+    <sprite>sprites\spr_army_player</sprite>
+    <sprite>sprites\spr_army_enemy</sprite>
+  </sprites>
+  <backgrounds name="background">
+    <background>background\background0</background>
+  </backgrounds>
   <paths name="paths"/>
+  <scripts name="scripts">
+    <script>scripts\scr_zDepth.gml</script>
+  </scripts>
+  <objects name="objects">
+    <object>objects\obj_army_player</object>
+    <object>objects\obj_army_enemy</object>
+    <object>objects\obj_troop_militia</object>
+    <object>objects\obj_controller</object>
+    <object>objects\obj_camera</object>
+    <object>objects\par_army</object>
+  </objects>
+  <rooms name="rooms">
+    <room>rooms\room0</room>
+  </rooms>
   <help>
     <rtf>help.rtf</rtf>
   </help>
