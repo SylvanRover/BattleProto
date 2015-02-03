@@ -5,87 +5,51 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>par_army</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
       <action>
         <libid>1</libid>
-        <id>601</id>
-        <kind>0</kind>
+        <id>603</id>
+        <kind>7</kind>
         <userelative>0</userelative>
         <isquestion>0</isquestion>
         <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_execute_script</functionname>
+        <exetype>2</exetype>
+        <functionname></functionname>
         <codestring></codestring>
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
-            <kind>9</kind>
-            <script>scr_army_init</script>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>601</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_execute_script</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>9</kind>
-            <script>scr_zDepth</script>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
+            <kind>1</kind>
+            <string>/// Set Variables
+
+phy_fixed_rotation = true;
+alarm[0]=10;
+alarm[1]=0;
+alarm[2]=0;
+alarmFinished = false;
+dir = direction;
+los = 150;
+hp_current = 100;
+hp_max = 100;
+healthBarActive = false;
+died = false;
+
+selected = false;
+
+button_attack = keyboard_check_released (ord('D'));
+button_block = keyboard_check (ord('W'));
+button_target = keyboard_check_pressed(vk_lshift);
+
+// Movement
+xAxis = 0;
+yAxis = 0;
+magnitude = 0;
+</string>
           </argument>
         </arguments>
       </action>
@@ -147,19 +111,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Control the states
+            <string>/// Army Selection
 
-if (state == 'move'){
-    scr_army_move();
-} else if (state == 'idle'){
-    scr_army_idle();
-}
+
 </string>
           </argument>
         </arguments>
       </action>
-    </event>
-    <event eventtype="4" ename="par_army">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -176,24 +134,66 @@ if (state == 'move'){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Collision
+            <string>/// Keyboard Controls
+if (!selected) exit;
 
-motion_add(point_direction(other.x, other.y, x, y), 1);
+if (obj_player_controller.settingsOpen) || (hp_current &lt;= 0){
+    phy_speed_x = 0;
+    phy_speed_y = 0;
+    exit;
+}
 
-// Check to see if you would be stuck
-if (x == other.x &amp;&amp; y == other.y) {
-    if (id &gt; other.id) {
-        x+=1;
-    } else {
-        x-=1;
+if (obj_player_controller.controls_keyboard)
+{
+
+    mbLeftRelease = mouse_check_button_released(mb_right);
+    mbLeftCheck = mouse_check_button(mb_right);
+    vkLShiftCheck = keyboard_check_pressed(vk_lshift);
+    //target = instance_nth_nearest(x,y,obj_army_enemy,nth_target);
+    //enemyTargetX = instance_nearest(x, y-12, obj_enemy_targeting).x;
+    //enemyTargetY = instance_nearest(x, y-12, obj_enemy_targeting).y;
+
+    direction = point_direction(x, y, mouse_x, mouse_y);
+    // Basic Movement
+    if (mbLeftCheck) 
+    {
+        instance_create(mouse_x, mouse_y, obj_move_to_cursor);
+        dir = point_direction(x, y, mouse_x, mouse_y);
+        phy_speed_x = lengthdir_x(obj_player_controller.speedX, dir);
+        phy_speed_y = lengthdir_y(obj_player_controller.speedY, dir);
+        //direction = dir;
     }
+    
+    if (mbLeftRelease)
+    {
+        instance_create(mouse_x, mouse_y, obj_move_to_point);
+        dir = point_direction(x, y, obj_move_to_point.x, obj_move_to_point.y);
+        phy_speed_x = lengthdir_x(obj_player_controller.speedX, dir);
+        phy_speed_y = lengthdir_y(obj_player_controller.speedY, dir);
+    }
+    
+    //Stop Movement on collision with Cursor and Point
+    if (collision_circle(x, y, 8, obj_move_to_point,true,true))
+    {
+        phy_speed_x = 0;
+        phy_speed_y = 0;
+    }
+    if (collision_circle(x, y, 10, obj_move_to_cursor,true,true))
+    {
+        phy_speed_x = 0;
+        phy_speed_y = 0;
+    }
+        
+    //Vertical Speed Clamp
+    if (phy_speed_y &gt; obj_player_controller.speedY) phy_speed_y = obj_player_controller.speedY;
+    if (phy_speed_y &lt; -obj_player_controller.speedY) phy_speed_y = -obj_player_controller.speedY;
 }
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="6" enumb="54">
+    <event eventtype="6" enumb="56">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -210,25 +210,53 @@ if (x == other.x &amp;&amp; y == other.y) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Create the target and change to a move state
+            <string>/// Select the Army
 
-// Make sure there isnt another target
-if (target != -1 &amp;&amp; instance_exists(target)){
-    with (target) instance_destroy();
+if (instance_exists(obj_cursor)){
+    scr_toggle_select(obj_cursor.px, obj_cursor.py, mouse_x, mouse_y);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Draw Selected
+
+if (selected){
+    draw_set_alpha(.25);
+    draw_circle_colour(x, y, 16, c_lime, c_lime, true);
+    draw_set_alpha(.1);    
+    draw_circle_colour(x, y, 16, c_lime, c_lime, false);
+    draw_set_alpha(1);
 }
 
-target = instance_create(mouse_x, mouse_y, obj_target);
-state = 'move';
-
+draw_self();
 </string>
           </argument>
         </arguments>
       </action>
     </event>
   </events>
-  <PhysicsObject>0</PhysicsObject>
+  <PhysicsObject>-1</PhysicsObject>
   <PhysicsObjectSensor>0</PhysicsObjectSensor>
-  <PhysicsObjectShape>0</PhysicsObjectShape>
+  <PhysicsObjectShape>2</PhysicsObjectShape>
   <PhysicsObjectDensity>0.5</PhysicsObjectDensity>
   <PhysicsObjectRestitution>0.100000001490116</PhysicsObjectRestitution>
   <PhysicsObjectGroup>0</PhysicsObjectGroup>
@@ -237,5 +265,14 @@ state = 'move';
   <PhysicsObjectFriction>0.200000002980232</PhysicsObjectFriction>
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
-  <PhysicsShapePoints/>
+  <PhysicsShapePoints>
+    <point>48,112</point>
+    <point>32,120</point>
+    <point>24,120</point>
+    <point>8,112</point>
+    <point>8,104</point>
+    <point>24,96</point>
+    <point>32,96</point>
+    <point>48,104</point>
+  </PhysicsShapePoints>
 </object>

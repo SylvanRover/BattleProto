@@ -27,8 +27,8 @@
             <kind>1</kind>
             <string>/// Set Variables
 
-speedX = 1.7;
-speedY = 1.3;
+speedX = 3;
+speedY = 2;
 
 killCount = 0;
 enemyCount = 0;
