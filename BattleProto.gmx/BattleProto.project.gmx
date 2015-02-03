@@ -8,6 +8,11 @@
   <sprites name="sprites">
     <sprite>sprites\spr_army_player</sprite>
     <sprite>sprites\spr_army_enemy</sprite>
+    <sprite>sprites\spr_camera</sprite>
+    <sprite>sprites\spr_cursor</sprite>
+    <sprite>sprites\spr_enemyTargeting</sprite>
+    <sprite>sprites\spr_moveToCursor</sprite>
+    <sprite>sprites\spr_moveToPoint</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background0</background>
@@ -15,14 +20,25 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\scr_zDepth.gml</script>
+    <script>scripts\instance_nth_nearest.gml</script>
   </scripts>
+  <fonts name="fonts">
+    <font>fonts\font_main</font>
+  </fonts>
   <objects name="objects">
     <object>objects\obj_army_player</object>
     <object>objects\obj_army_enemy</object>
     <object>objects\obj_troop_militia</object>
-    <object>objects\obj_controller</object>
-    <object>objects\obj_camera</object>
+    <object>objects\obj_camera_simple</object>
     <object>objects\par_army</object>
+    <object>objects\obj_player</object>
+    <object>objects\obj_camera</object>
+    <object>objects\obj_camera_controller</object>
+    <object>objects\obj_player_controller</object>
+    <object>objects\obj_cursor</object>
+    <object>objects\obj_enemy_targeting</object>
+    <object>objects\obj_move_to_point</object>
+    <object>objects\obj_move_to_cursor</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>
