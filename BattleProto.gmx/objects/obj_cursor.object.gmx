@@ -56,7 +56,7 @@ py = -1;
 x = mouse_x;
 y = mouse_y;
 
-if (mouse_check_button(mb_left)) sprite_index = spr_moveToCursor;
+if (mouse_check_button(mb_right)) sprite_index = spr_moveToCursor;
 else sprite_index = spr_cursor;
 </string>
           </argument>

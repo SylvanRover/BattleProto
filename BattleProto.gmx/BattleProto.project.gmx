@@ -21,8 +21,6 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\scr_zDepth.gml</script>
-    <script>scripts\instance_nth_nearest.gml</script>
-    <script>scripts\scr_depthCorrection.gml</script>
     <scripts name="RTS">
       <script>scripts\scr_army_init.gml</script>
       <script>scripts\scr_army_idle.gml</script>
@@ -34,12 +32,8 @@
     <font>fonts\font_main</font>
   </fonts>
   <objects name="objects">
-    <object>objects\obj_army_player_orig</object>
-    <object>objects\obj_army_enemy_orig</object>
     <object>objects\obj_troop_militia</object>
-    <object>objects\obj_camera_simple</object>
     <object>objects\par_army</object>
-    <object>objects\obj_player</object>
     <object>objects\obj_camera</object>
     <object>objects\obj_camera_controller</object>
     <object>objects\obj_player_controller</object>

@@ -27,6 +27,14 @@
             <kind>1</kind>
             <string>/// Draw army marker
 
+if (selected) {
+    draw_set_alpha(.25);
+    draw_ellipse_colour(x-24, y-12, x+24, y+24, c_lime, c_lime, true);
+    draw_set_alpha(.1);
+    draw_ellipse_colour(x-24, y-12, x+24, y+24, c_lime, c_lime, false);
+    draw_set_alpha(1);
+}
+
 draw_sprite(spr_army_player,image_index,x,y);
 </string>
           </argument>
