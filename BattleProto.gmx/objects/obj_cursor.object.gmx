@@ -29,6 +29,8 @@
 
 px = -1;
 py = -1;
+rx = mouse_x;
+ry = mouse_y;
 </string>
           </argument>
         </arguments>

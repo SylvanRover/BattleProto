@@ -73,7 +73,7 @@ instance_create(view_wview[0]/2-200,view_hview[0]/2-10,obj_army_player);
 instance_create(view_wview[0]/2+200,view_hview[0]/2+10,obj_army_enemy);
 instance_create(obj_army_player.x, obj_army_player.y,obj_camera);
 instance_create(obj_army_player.x, obj_army_player.y,obj_camera_controller);
-if (controls_keyboard) instance_create(mouse_x, mouse_y,obj_cursor);
+instance_create(mouse_x, mouse_y,obj_cursor);
 </string>
           </argument>
         </arguments>

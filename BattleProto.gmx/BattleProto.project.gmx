@@ -39,8 +39,6 @@
     <object>objects\obj_player_controller</object>
     <object>objects\obj_cursor</object>
     <object>objects\obj_enemy_targeting</object>
-    <object>objects\obj_move_to_point</object>
-    <object>objects\obj_move_to_cursor</object>
     <object>objects\obj_target</object>
     <object>objects\obj_army_player</object>
     <object>objects\obj_army_enemy</object>
