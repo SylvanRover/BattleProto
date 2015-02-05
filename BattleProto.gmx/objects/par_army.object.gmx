@@ -76,6 +76,33 @@ scr_army_init();
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Control the states
+
+if (state == 'move'){
+    scr_army_move();
+} else if (state == 'idle'){
+    scr_army_idle();
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
         <id>601</id>
         <kind>0</kind>
         <userelative>0</userelative>
@@ -130,12 +157,16 @@ scr_army_init();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Control the states
+            <string>/// Select the army
 
-if (state == 'move'){
-    scr_army_move();
-} else if (state == 'idle'){
-    scr_army_idle();
+if (mouse_check_button(mb_left) &amp;&amp; !mouse_hover) {
+    if (instance_exists(obj_cursor)) {
+        scr_toggle_select(obj_cursor.px, obj_cursor.py, mouse_x, mouse_y);
+    }
+}
+
+if (mouse_check_button_pressed(mb_left) &amp;&amp; mouse_hover) {
+    selected = true;
 }
 </string>
           </argument>
@@ -196,11 +227,10 @@ if (x == other.x &amp;&amp; y == other.y) {
             <string>/// Create the target and change to a move state
 
 // Make sure there isnt another target
-if (target != -1 &amp;&amp; instance_exists(target)){
-    with (target) instance_destroy();
-}
-
 if (selected) {
+    if (target != -1 &amp;&amp; instance_exists(target)){
+        with (target) instance_destroy();
+    }
     target = instance_create(mouse_x, mouse_y, obj_target);
     state = 'move';
 }
@@ -227,10 +257,61 @@ if (selected) {
           <argument>
             <kind>1</kind>
             <string>/// Select the Army
-
+/*
 if (instance_exists(obj_cursor)) {
     scr_toggle_select(obj_cursor.px, obj_cursor.py, mouse_x, mouse_y);
 }
+*/
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="11">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// mouse hover off
+
+mouse_hover = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="10">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// mouse hover on
+
+mouse_hover = true;
 </string>
           </argument>
         </arguments>

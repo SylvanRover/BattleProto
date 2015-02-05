@@ -26,6 +26,7 @@
       <script>scripts\scr_army_idle.gml</script>
       <script>scripts\scr_army_move.gml</script>
       <script>scripts\scr_toggle_select.gml</script>
+      <script>scripts\scr_click_select.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">
@@ -36,7 +37,7 @@
     <object>objects\par_army</object>
     <object>objects\obj_camera</object>
     <object>objects\obj_camera_controller</object>
-    <object>objects\obj_player_controller</object>
+    <object>objects\obj_controller</object>
     <object>objects\obj_cursor</object>
     <object>objects\obj_enemy_targeting</object>
     <object>objects\obj_target</object>

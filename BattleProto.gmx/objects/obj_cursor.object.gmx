@@ -29,8 +29,6 @@
 
 px = -1;
 py = -1;
-rx = mouse_x;
-ry = mouse_y;
 </string>
           </argument>
         </arguments>
@@ -53,13 +51,10 @@ ry = mouse_y;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Position &amp; Destroy
+            <string>/// Position with mouse
 
 x = mouse_x;
 y = mouse_y;
-
-if (mouse_check_button(mb_right)) sprite_index = spr_moveToCursor;
-else sprite_index = spr_cursor;
 </string>
           </argument>
         </arguments>
