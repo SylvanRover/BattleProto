@@ -69,11 +69,16 @@ tile_max_y = room_height+32;
             <kind>1</kind>
             <string>/// Create Armies, Cursor, Camera, &amp; Inventory
 
+instance_create(0, 0, obj_view_controller);
+instance_create(view_wview[0]/2,view_hview[0]/2,obj_camera);
+instance_create(view_wview[0]/2,view_hview[0]/2,obj_camera_controller);
 instance_create(mouse_x, mouse_y,obj_cursor);
-instance_create(view_wview[0]/2-200,view_hview[0]/2-10,obj_army_player);
-instance_create(view_wview[0]/2+200,view_hview[0]/2+10,obj_army_enemy);
-instance_create(obj_army_player.x, obj_army_player.y,obj_camera);
-instance_create(obj_army_player.x, obj_army_player.y,obj_camera_controller);
+
+instance_create(view_wview[0]/2-200,view_hview[0]/2-10,obj_player_army);
+instance_create(view_wview[0]/2-150,view_hview[0]/2-20,obj_player_army);
+instance_create(view_wview[0]/2-125,view_hview[0]/2-30,obj_player_army);
+instance_create(view_wview[0]/2-100,view_hview[0]/2-40,obj_player_army);
+instance_create(view_wview[0]/2+200,view_hview[0]/2+10,obj_enemy_army);
 </string>
           </argument>
         </arguments>

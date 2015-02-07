@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>par_army</parentName>
+  <parentName>par_player_army</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="8" enumb="0">
@@ -35,7 +35,7 @@ if (selected) {
     draw_set_alpha(1);
 }
 
-draw_sprite(spr_army_enemy,image_index,x,y);
+draw_sprite(spr_army_player,image_index,x,y);
 </string>
           </argument>
         </arguments>

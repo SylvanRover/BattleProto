@@ -27,6 +27,7 @@
       <script>scripts\scr_army_move.gml</script>
       <script>scripts\scr_toggle_select.gml</script>
       <script>scripts\scr_click_select.gml</script>
+      <script>scripts\scr_move_view.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">
@@ -35,14 +36,17 @@
   <objects name="objects">
     <object>objects\obj_troop_militia</object>
     <object>objects\par_army</object>
+    <object>objects\par_player_army</object>
+    <object>objects\par_enemy_army</object>
     <object>objects\obj_camera</object>
     <object>objects\obj_camera_controller</object>
     <object>objects\obj_controller</object>
     <object>objects\obj_cursor</object>
     <object>objects\obj_enemy_targeting</object>
     <object>objects\obj_target</object>
-    <object>objects\obj_army_player</object>
-    <object>objects\obj_army_enemy</object>
+    <object>objects\obj_player_army</object>
+    <object>objects\obj_enemy_army</object>
+    <object>objects\obj_view_controller</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>
