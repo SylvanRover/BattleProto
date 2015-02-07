@@ -28,6 +28,9 @@
       <script>scripts\scr_toggle_select.gml</script>
       <script>scripts\scr_click_select.gml</script>
       <script>scripts\scr_move_view.gml</script>
+      <script>scripts\scr_enemy_army_attack.gml</script>
+      <script>scripts\scr_enemy_army_chase.gml</script>
+      <script>scripts\scr_enemy_army_idle.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">

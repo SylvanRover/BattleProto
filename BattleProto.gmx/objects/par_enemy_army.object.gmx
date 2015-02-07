@@ -28,6 +28,10 @@
             <string>/// initiate script
 
 scr_army_init();
+
+if (instance_exists(par_player_army)) {
+    foe = instance_nearest(x, y, par_player_army);
+}
 </string>
           </argument>
         </arguments>
@@ -90,10 +94,49 @@ scr_army_init();
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>/// Control the states
+
+if (instance_exists(par_player_army)) {
+    foe = instance_nearest(x, y, par_player_army);
+}
+
+if (state == 'chase') {
+    scr_enemy_army_chase()
+} else if (state == 'attack') {
+    scr_enemy_army_attack()
+} else if (state == 'idle') {
+    scr_enemy_army_idle()
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>/// Select the army
 
 if (mouse_check_button_pressed(mb_left) &amp;&amp; mouse_hover) {
     selected = true;
+}
+
+if (instance_exists(par_player_army) || !mouse_hover) {
+    if (par_player_army.selected) {
+        selected = false;
+    }
 }
 </string>
           </argument>
