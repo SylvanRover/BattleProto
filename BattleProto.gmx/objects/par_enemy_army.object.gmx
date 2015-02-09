@@ -129,7 +129,7 @@ if (state == 'chase') {
             <kind>1</kind>
             <string>/// Select the army
 
-if (mouse_check_button_pressed(mb_left) &amp;&amp; mouse_hover) {
+if (mouse_check_button_released(mb_left) &amp;&amp; mouse_hover) {
     selected = true;
 }
 
